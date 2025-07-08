@@ -25,7 +25,7 @@ class Order(models.Model):
     promo_code = models.ForeignKey(
         PromoCode, on_delete=models.SET_NULL, null=True, blank=True
     )
-    cashback_user = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    cashback_used = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     cashback_earned = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)

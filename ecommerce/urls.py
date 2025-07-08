@@ -38,6 +38,8 @@ urlpatterns = [
     path('api/auth/', views.obtain_auth_token),
     path('api/accounts/', include('apps.accounts.urls')),
     path('api/products/', include('apps.products.urls')),
+    path('api/cart/', include('apps.cart.urls')),
+    path('api/orders/', include('apps.orders.urls')),
     path('api/promotions/', include('apps.promotions.urls')),
 
     path('api/jwt/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
