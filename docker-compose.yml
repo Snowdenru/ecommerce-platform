@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  web:
+    image: ecommerce_project
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    networks:
+      - ecommerce_net
+  db:
+    image: postgres:14
+    container_name: ecommerce_db
+    environment:
+      POSTGRES_USER: ecommerce_user  
+      POSTGRES_PASSWORD: ecommerce_pass
+      POSTGRES_DB: ecommerce_db
+    volumes:
+      - pg_data_ecommerce:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Пробрасываем порт
+    networks:
+      - ecommerce_net
+
+volumes:
+  pg_data_ecommerce:
+
+
+networks:
+  ecommerce_net:
+    driver: bridge
