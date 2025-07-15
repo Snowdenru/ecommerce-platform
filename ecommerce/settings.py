@@ -108,7 +108,8 @@ DATABASES = {
         'NAME': os.getenv('DJANGO_DB_NAME'), 
         'USER': os.getenv('DJANGO_DB_USER'),
         'PASSWORD': os.getenv('DJANGO_DB_PASSWORD'),
-        'HOST': 'db',  
+        # 'HOST': 'db',  
+        'HOST': '127.0.0.1',  
         'PORT': os.getenv('DJANGO_DB_PORT'),
         'OPTIONS': {
             'options': '-c search_path=django,public',
@@ -241,3 +242,52 @@ SIMPLE_JWT = {
 
 CASHBACK_PERCENT=5
 MIN_CASHBACK_AMOUNT=1000
+
+
+# Celery settings
+
+CELERY_BROKER_URL = "redis://:redis_admin_pass@127.0.0.1:6379/0"
+CELERY_BROKER_BACKEND = "redis://:redis_admin_pass@127.0.0.1:6379/0"
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZON = 'Erope/Moscow'
+
+
+
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
+
+# Email settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True 
+
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD')) # пароль приложения
+
+EMAIL_SERVER = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
+
+
+# Дополнительные настройки SSL
+EMAIL_SSL_CERTFILE = None
+EMAIL_SSL_KEYFILE = None
+
+# Применяемые свойства:
+
+# EMAIL_HOST - представитель услуг 
+# EMAIL_PORT - порт SMTP для Yahoo - 465
+# EMAIL_USE_SSL - использовать защищенное соединение
+# EMAIL_HOST_USER - наш email адрес
+# EMAIL_HOST_PASSWORD - наш полученный пароль для приложения
+# EMAIL_SERVER - email сервера
+# DEFAULT_FROM_EMAIL с какого адреса будут отправляться письма
+# EMAIL_ADMIN - ваш главный email, куда будут все данные приходить с сайта.
