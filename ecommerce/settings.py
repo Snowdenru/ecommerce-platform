@@ -108,8 +108,8 @@ DATABASES = {
         'NAME': os.getenv('DJANGO_DB_NAME'), 
         'USER': os.getenv('DJANGO_DB_USER'),
         'PASSWORD': os.getenv('DJANGO_DB_PASSWORD'),
-        # 'HOST': 'db',  
-        'HOST': '127.0.0.1',  
+        'HOST': 'db',  
+        # 'HOST': '127.0.0.1',  
         'PORT': os.getenv('DJANGO_DB_PORT'),
         'OPTIONS': {
             'options': '-c search_path=django,public',
